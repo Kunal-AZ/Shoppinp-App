@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile | Sitara Grace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="retail-mode">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="images/logo.png" alt="Project3 logo">
+        <span>Sitara Grace</span>
+      </a>
+      <div class="search-shell">
+        <span class="search-icon">⌕</span>
+        <input type="text" placeholder="Search your profile">
+      </div>
+      <nav class="nav">
+        <a href="collections.html">Collection</a>
+        <a href="latest.html">Latest</a>
+        <a href="story.html">Story</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="auth-link" href="profile.html">Profile</a>
+        <a class="nav-cta" href="cart.html">Cart <span class="cart-badge" data-cart-count>0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-shell">
+    <section class="page-hero dashboard-hero">
+      <div class="page-hero-media">
+        <img src="images/about-banner0.jpg" alt="User dashboard banner">
+      </div>
+      <div class="container page-hero-content">
+        <p class="eyebrow">My Dashboard</p>
+        <h1>Your Sitara Grace account</h1>
+        <p>
+          Track your account, jump back into shopping, and review your latest order activity from one place.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-space">
+      <div class="container dashboard-layout" id="profile-card"></div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="app.js"></script>
+</body>
+</html>

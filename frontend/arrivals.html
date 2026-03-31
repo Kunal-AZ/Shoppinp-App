@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop | Sitara Grace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="retail-mode" data-page="arrivals">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="images/logo.png" alt="Project3 logo">
+        <span>Sitara Grace</span>
+      </a>
+      <div class="search-shell">
+        <span class="search-icon">⌕</span>
+        <input data-site-search type="text" placeholder="Search all arrivals">
+      </div>
+      <nav class="nav">
+        <a href="collections.html">Collection</a>
+        <a href="latest.html">Latest</a>
+        <a href="story.html">Story</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="auth-link" href="login.html">Login</a>
+        <a class="auth-link" href="register.html">Register</a>
+        <a class="nav-cta" href="cart.html">Cart <span class="cart-badge" data-cart-count>0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="catalog-shell">
+    <section class="section-space">
+      <div class="container catalog-topbar">
+        <div>
+          <p class="eyebrow">Women&apos;s arrivals</p>
+          <h2>All products</h2>
+        </div>
+        <div class="filter-row" id="filters">
+          <button class="filter is-active" type="button" data-filter="all">All</button>
+          <button class="filter" type="button" data-filter="outerwear">Outerwear</button>
+          <button class="filter" type="button" data-filter="tops">Tops</button>
+          <button class="filter" type="button" data-filter="dresses">Dresses</button>
+          <button class="filter" type="button" data-filter="occasion">Occasion</button>
+          <button class="button button-primary" type="button" data-proceed-cart>Proceed to Payment</button>
+        </div>
+      </div>
+      <div class="container product-grid" id="product-grid"></div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <div class="cart-toast" id="cart-toast" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

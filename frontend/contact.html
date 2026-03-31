@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Sitara Grace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="retail-mode">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">
+        <img src="images/logo.png" alt="Project3 logo">
+        <span>Sitara Grace</span>
+      </a>
+      <div class="search-shell">
+        <span class="search-icon">⌕</span>
+        <input type="text" placeholder="Search support">
+      </div>
+      <nav class="nav">
+        <a href="collections.html">Collection</a>
+        <a href="latest.html">Latest</a>
+        <a href="story.html">Story</a>
+        <a class="is-active" href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="auth-link" href="login.html">Login</a>
+        <a class="auth-link" href="register.html">Register</a>
+        <a class="nav-cta" href="cart.html">Cart <span class="cart-badge" data-cart-count>0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="page-hero-media">
+        <img src="images/newsletter.jpg" alt="Contact banner">
+      </div>
+      <div class="container page-hero-content">
+        <p class="eyebrow">Contact</p>
+        <h1>Get help with orders, sizing, or product selection.</h1>
+        <p>
+          The contact page stays simple while the rest of the store handles women&apos;s product browsing and payment flow.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-space">
+      <div class="container">
+        <form class="contact-form" id="contact-form" novalidate>
+          <label>
+            Name
+            <input type="text" name="name" placeholder="Your name" required>
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="you@example.com" required>
+          </label>
+          <label>
+            Phone
+            <input type="tel" name="phone" placeholder="+91 98765 43210">
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows="5" placeholder="Tell us what you need" required></textarea>
+          </label>
+          <button class="button button-primary" type="submit">Send message</button>
+          <p class="form-status" id="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <div class="cart-toast" id="cart-toast" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

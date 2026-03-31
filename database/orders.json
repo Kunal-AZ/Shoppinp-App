@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "order_number": "SG-00001",
+        "user_id": 1,
+        "user_email": "test123@gmail.com",
+        "customer_name": "Kunal Sharma",
+        "customer_phone": "+918767528776",
+        "payment_method": "upi",
+        "payment_status": "paid",
+        "order_status": "processing",
+        "subtotal": 27560,
+        "shipping": 0,
+        "total": 27560,
+        "items": [
+            {
+                "id": 1,
+                "title": "Cinder Wool Coat",
+                "price": 6890,
+                "quantity": 4,
+                "category": "outerwear",
+                "image": "images/products/0-0.jpg",
+                "line_total": 27560
+            }
+        ],
+        "created_at": "2026-03-31T15:19:49+00:00"
+    },
+    {
+        "id": 2,
+        "order_number": "SG-00002",
+        "user_id": 1,
+        "user_email": "test123@gmail.com",
+        "customer_name": "Kunal Sharma",
+        "customer_phone": "+918767528776",
+        "payment_method": "upi",
+        "payment_status": "paid",
+        "order_status": "processing",
+        "subtotal": 16970,
+        "shipping": 0,
+        "total": 16970,
+        "items": [
+            {
+                "id": 2,
+                "title": "Studio Trench",
+                "price": 7490,
+                "quantity": 1,
+                "category": "outerwear",
+                "image": "images/products/1-0.jpg",
+                "line_total": 7490
+            },
+            {
+                "id": 3,
+                "title": "Ivory Daily Shirt",
+                "price": 3490,
+                "quantity": 1,
+                "category": "tops",
+                "image": "images/products/3-0.jpg",
+                "line_total": 3490
+            },
+            {
+                "id": 4,
+                "title": "Nightfall Blazer",
+                "price": 5990,
+                "quantity": 1,
+                "category": "occasion",
+                "image": "images/products/4-0.jpg",
+                "line_total": 5990
+            }
+        ],
+        "created_at": "2026-03-31T15:28:33+00:00"
+    },
+    {
+        "id": 3,
+        "order_number": "SG-00003",
+        "user_id": 2,
+        "user_email": "test12@gmail.com",
+        "customer_name": "Kunal Sharma",
+        "customer_phone": "+918767528776",
+        "payment_method": "upi",
+        "payment_status": "paid",
+        "order_status": "processing",
+        "subtotal": 13780,
+        "shipping": 0,
+        "total": 13780,
+        "items": [
+            {
+                "id": 1,
+                "title": "Cinder Wool Coat",
+                "price": 6890,
+                "quantity": 2,
+                "category": "outerwear",
+                "image": "images/products/0-0.jpg",
+                "line_total": 13780
+            }
+        ],
+        "created_at": "2026-03-31T15:36:21+00:00"
+    }
+]

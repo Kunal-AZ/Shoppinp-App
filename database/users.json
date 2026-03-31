@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "kunal sharma",
+        "email": "test123@gmail.com",
+        "password_hash": "$2y$12$MoUTy/L/0HeakJIsSGQUM.3LdG9fQCRHdHqZ/ZqDBD5EhJ9dBF//m",
+        "created_at": "2026-03-31T15:18:51+00:00"
+    },
+    {
+        "id": 2,
+        "name": "kaushal",
+        "email": "test12@gmail.com",
+        "password_hash": "$2y$12$Zd3dH.Vr1okPUi9EY1i1h.wehVW1s4v/m3vQKFmQFaDGcQJjEAi/i",
+        "created_at": "2026-03-31T15:35:57+00:00"
+    }
+]
