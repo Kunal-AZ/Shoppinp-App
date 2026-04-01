@@ -10,8 +10,10 @@ const products = [
     id: 1,
     title: "Cinder Wool Coat",
     price: 6890,
+    gender: "women",
     category: "outerwear",
     image: "images/products/0-0.jpg",
+    images: ["images/products/0-0.jpg", "images/products/0-1.jpg", "images/products/0-2.jpg"],
     badge: "Best Seller",
     shortDescription: "Structured winter coat with a clean city silhouette.",
     description: "A polished outerwear layer with a soft wool feel, button-front closure, and a tailored shape that works from office hours to evening plans.",
@@ -21,8 +23,10 @@ const products = [
     id: 2,
     title: "Studio Trench",
     price: 7490,
+    gender: "women",
     category: "outerwear",
     image: "images/products/1-0.jpg",
+    images: ["images/products/1-0.jpg", "images/products/1-1.jpg", "images/products/1-2.jpg"],
     badge: "New In",
     shortDescription: "Modern trench styling with a lightweight flow.",
     description: "This trench brings a sharper retail look to the catalog with a relaxed drape, waist belt, and versatile neutral color palette.",
@@ -30,65 +34,155 @@ const products = [
   },
   {
     id: 3,
+    title: "Blush Garden Dress",
+    price: 4590,
+    gender: "women",
+    category: "dresses",
+    image: "images/products/2-0.jpg",
+    images: ["images/products/2-0.jpg"],
+    badge: "Fresh Print",
+    shortDescription: "Soft floral dressing with a light romantic finish.",
+    description: "A printed day dress designed to bring a softer mood to the catalog, with airy fabric, gentle gathers, and easy all-day styling.",
+    details: ["Lightweight feel", "Floral print", "Relaxed silhouette", "Easy day-to-evening wear"]
+  },
+  {
+    id: 4,
     title: "Ivory Daily Shirt",
     price: 3490,
+    gender: "women",
     category: "tops",
     image: "images/products/3-0.jpg",
+    images: ["images/products/3-0.jpg", "images/products/3-1.jpg", "images/products/3-2.jpg"],
     badge: "Classic",
     shortDescription: "An elevated essential for everyday wardrobes.",
     description: "A crisp shirt with a clean collar and easy shape that fits into casual, office, and occasion styling with minimal effort.",
     details: ["Classic collar", "Easy-care fabric", "Smart casual styling", "Soft hand feel"]
   },
   {
-    id: 4,
+    id: 5,
     title: "Nightfall Blazer",
     price: 5990,
+    gender: "women",
     category: "occasion",
     image: "images/products/4-0.jpg",
+    images: ["images/products/4-0.jpg", "images/products/4-1.jpg", "images/products/4-2.jpg"],
     badge: "Editor Pick",
     shortDescription: "A tailored blazer for dressed-up evenings.",
     description: "Designed to create a fashion-forward retail look, this blazer pairs structured shoulders with a sleek silhouette for sharper styling.",
     details: ["Tailored fit", "Clean lapel design", "Occasion-ready finish", "Works with co-ord styling"]
   },
   {
-    id: 5,
+    id: 6,
     title: "Gallery Knit",
     price: 4290,
+    gender: "women",
     category: "tops",
     image: "images/products/5-0.jpg",
+    images: ["images/products/5-0.jpg", "images/products/5-1.jpg", "images/products/5-2.jpg"],
     badge: "Soft Knit",
     shortDescription: "Minimal knitwear with a refined shape.",
     description: "A soft-touch knit essential made for clean layering, everyday comfort, and a premium-looking storefront presentation.",
     details: ["Soft knit texture", "Regular fit", "Layering essential", "Easy to style"]
   },
   {
-    id: 6,
+    id: 7,
+    title: "Sunbeam Tailored Suit",
+    price: 7990,
+    gender: "men",
+    category: "occasion",
+    image: "images/products/6-0.jpg",
+    images: ["images/products/6-0.jpg", "images/products/6-1.jpg", "images/products/6-2.jpg"],
+    badge: "Statement Set",
+    shortDescription: "Bold tailoring that brings a bright editorial look.",
+    description: "A striking tailored set with clean lines, structured finishing, and standout color that gives the storefront a stronger occasionwear edit.",
+    details: ["Tailored silhouette", "Statement color", "Structured finish", "Event-ready styling"]
+  },
+  {
+    id: 8,
+    title: "Golden Escape Jumpsuit",
+    price: 6190,
+    gender: "women",
+    category: "occasion",
+    image: "images/products/7-0.jpg",
+    images: ["images/products/7-0.jpg", "images/products/7-1.jpg", "images/products/7-2.jpg"],
+    badge: "Vacation Edit",
+    shortDescription: "An easy statement jumpsuit with warm getaway energy.",
+    description: "Designed for festive plans and holiday styling, this jumpsuit adds playful shape, standout color, and a one-piece polished finish.",
+    details: ["One-piece styling", "Soft structured fit", "Travel-friendly look", "Occasion-ready silhouette"]
+  },
+  {
+    id: 9,
     title: "After Hours Dress",
     price: 8290,
+    gender: "women",
     category: "dresses",
     image: "images/products/8-0.jpg",
+    images: ["images/products/8-0.jpg", "images/products/8-1.jpg", "images/products/8-2.jpg"],
     badge: "Party Ready",
     shortDescription: "A fluid dress designed for standout evenings.",
     description: "An occasion piece with flowing structure, soft sheen, and an event-ready silhouette that strengthens the premium storefront feel.",
     details: ["Occasion fit", "Elegant drape", "Evening texture", "Statement styling"]
   },
   {
-    id: 7,
+    id: 10,
+    title: "Emerald Coast Maxi",
+    price: 7090,
+    gender: "women",
+    category: "dresses",
+    image: "images/products/9-0.jpg",
+    images: ["images/products/9-0.jpg", "images/products/9-1.jpg", "images/products/9-2.jpg"],
+    badge: "Resort Ready",
+    shortDescription: "A sweeping printed maxi for standout summer dressing.",
+    description: "This full-length dress adds movement, print, and a more elevated occasion mood, making it a strong fit for festive and resort-led edits.",
+    details: ["Maxi length", "Printed finish", "Cutout detail", "Flowing silhouette"]
+  },
+  {
+    id: 11,
     title: "City Layer Vest",
     price: 3890,
+    gender: "women",
     category: "outerwear",
     image: "images/products/10-0.jpg",
+    images: ["images/products/10-0.jpg", "images/products/10-1.jpg", "images/products/10-2.jpg", "images/products/10-3.jpg"],
     badge: "Layering",
     shortDescription: "A flexible layering vest for transitional weather.",
     description: "A street-to-smart layering piece with a practical feel, modern cut, and enough structure to sit confidently inside the catalog.",
     details: ["Layering-friendly", "Sleeveless structure", "Urban styling", "Lightweight build"]
   },
   {
-    id: 8,
+    id: 12,
+    title: "Rose Wrap Mini",
+    price: 4890,
+    gender: "women",
+    category: "dresses",
+    image: "images/products/11-0.jpg",
+    images: ["images/products/11-0.jpg", "images/products/11-1.jpg", "images/products/11-2.jpg"],
+    badge: "Date Night",
+    shortDescription: "Printed wrap styling with a soft party-ready drape.",
+    description: "A playful mini dress with a wrap front, fluid sleeves, and a polished floral print that suits day events and evening plans alike.",
+    details: ["Wrap-style shape", "Mini length", "Long sleeves", "Soft printed fabric"]
+  },
+  {
+    id: 13,
+    title: "Coastal Graphic Kurta",
+    price: 3290,
+    gender: "men",
+    category: "tops",
+    image: "images/products/12-0.jpg",
+    images: ["images/products/12-0.jpg", "images/products/12-1.jpg", "images/products/12-3.jpg"],
+    badge: "Easy Wear",
+    shortDescription: "A relaxed printed kurta-inspired top for everyday wear.",
+    description: "A lightweight casual top with a clean neckline, subtle statement print, and easy comfort that broadens the catalog with a more laid-back option.",
+    details: ["Relaxed fit", "Graphic print accent", "Breathable fabric feel", "Casual everyday styling"]
+  },
+  {
+    id: 14,
     title: "Tailored Satin Set",
     price: 7690,
+    gender: "women",
     category: "occasion",
     image: "images/products/13-1.jpg",
+    images: ["images/products/13-0.avif", "images/products/13-1.jpg", "images/products/13-2.jpg"],
     badge: "Limited Drop",
     shortDescription: "Satin co-ord styling with elevated polish.",
     description: "A striking set for statement dressing, with a subtle sheen, stronger presence, and a premium retail mood similar to curated festive edits.",
@@ -119,8 +213,8 @@ const latestCollection = [
 
 const pageProducts = {
   home: products.slice(0, 4),
-  collections: products.filter((item) => item.category === "outerwear"),
-  latest: [products[1], products[3], products[5], products[7]],
+  collections: products,
+  latest: products,
   arrivals: products,
   browse: products
 };
@@ -128,7 +222,11 @@ const pageProducts = {
 const footerColumns = [
   {
     title: "Women",
-    links: ["Westernwear", "Ethnicwear", "Sports & Activewear", "Sleepwear & Lingerie", "Bags, Wallets & Clutches", "Footwear", "Accessories", "Fragrances", "Shop By Occasion", "Shop By Brand"]
+    links: ["Dresses", "Tops", "Outerwear", "Occasion Wear", "Accessories"]
+  },
+  {
+    title: "Men",
+    links: ["Shirts", "Kurtas", "Tailored Looks", "Outerwear", "Essentials"]
   },
   {
     title: "Explore",
@@ -141,7 +239,7 @@ const footerColumns = [
 ];
 
 const infoPages = {
-  "about-us": "Sitara Grace is a women-only shopping experience focused on modern fashion, cleaner browsing, and a smoother cart-to-payment flow.",
+  "about-us": "Sitara Grace is a fashion shopping experience for both women and men, focused on cleaner browsing and a smoother cart-to-payment flow.",
   "track-order": "Track your order with shipment updates, dispatch tracking, and delivery progress from checkout to doorstep.",
   faqs: "Browse quick answers about orders, sizing, cart behavior, returns, and delivery support.",
   "customer-support": "Need help with your order or product selection? This page is the support destination for shopper questions.",
@@ -172,6 +270,7 @@ const browseDescriptionEl = document.getElementById("browse-description");
 const infoTitleEl = document.getElementById("info-title");
 const infoDescriptionEl = document.getElementById("info-description");
 const searchInputs = document.querySelectorAll("[data-site-search]");
+const genderSwitcherEls = document.querySelectorAll("[data-gender-switcher]");
 const paymentMethodEl = document.getElementById("payment-method");
 const paymentPromptEl = document.getElementById("payment-prompt");
 const cardFieldsEl = document.getElementById("card-fields");
@@ -200,6 +299,7 @@ const headerActionsEl = document.querySelector(".header-actions");
 let heroIndex = 0;
 let cart = loadCart();
 let currentFilter = "all";
+let currentGenderFilter = "all";
 let currentSearch = "";
 const AUTH_STORAGE_KEY = "aurelia-muse-user";
 const LAST_ORDER_STORAGE_KEY = "sitara-grace-last-order";
@@ -360,7 +460,7 @@ function createProductCard(product) {
         </a>
         <p class="product-copy">${product.shortDescription}</p>
         <div class="product-meta">
-          <span>${product.category}</span>
+          <span>${product.gender} / ${product.category}</span>
           <strong>${formatPrice(product.price)}</strong>
         </div>
         ${isHomePage ? "" : `
@@ -386,13 +486,52 @@ function getVisiblePageProducts() {
   const items = pageProducts[page] || products;
   return items.filter((product) => {
     const matchesFilter = currentFilter === "all" || product.category === currentFilter;
+    const matchesGender = currentGenderFilter === "all" || product.gender === currentGenderFilter;
     const query = currentSearch.trim().toLowerCase();
     const matchesSearch = !query
       || product.title.toLowerCase().includes(query)
+      || product.gender.toLowerCase().includes(query)
       || product.category.toLowerCase().includes(query)
       || product.shortDescription.toLowerCase().includes(query);
-    return matchesFilter && matchesSearch;
+    return matchesFilter && matchesGender && matchesSearch;
   });
+}
+
+function syncGenderButtons() {
+  genderSwitcherEls.forEach((container) => {
+    container.querySelectorAll("[data-gender-filter]").forEach((button) => {
+      button.classList.toggle("is-active", button.dataset.genderFilter === currentGenderFilter);
+    });
+  });
+}
+
+function updateGenderUrl() {
+  const url = new URL(window.location.href);
+  if (currentGenderFilter === "all") {
+    url.searchParams.delete("gender");
+  } else {
+    url.searchParams.set("gender", currentGenderFilter);
+  }
+  window.history.replaceState({}, "", url);
+}
+
+function setGenderFilter(gender, options = {}) {
+  const nextGender = gender === "men" || gender === "women" ? gender : "all";
+  currentGenderFilter = nextGender;
+  syncGenderButtons();
+
+  if (options.updateUrl !== false) {
+    updateGenderUrl();
+  }
+
+  renderPageProducts();
+  renderBrowsePage();
+}
+
+function initializeGenderFilter() {
+  const gender = new URLSearchParams(window.location.search).get("gender");
+  currentGenderFilter = gender === "men" || gender === "women" ? gender : "all";
+  syncGenderButtons();
 }
 
 function renderLatestCollection() {
@@ -457,7 +596,7 @@ function renderCart() {
         <div class="cart-item-head">
           <div>
             <a class="cart-product-link" href="${getProductUrl(item.id)}"><h3>${item.title}</h3></a>
-            <p>${item.category}</p>
+            <p>${item.gender} / ${item.category}</p>
           </div>
           <strong>${formatPrice(item.price * item.quantity)}</strong>
         </div>
@@ -494,14 +633,21 @@ function renderProductDetail() {
   }
 
   document.title = `${product.title} | Sitara Grace`;
+  const galleryImages = product.images && product.images.length ? product.images : [product.image];
   productDetailEl.innerHTML = `
     <div class="product-detail-shell">
       <div class="product-detail-media">
-        <img src="${product.image}" alt="${product.title}">
+        <img class="product-detail-main-image" src="${galleryImages[0]}" alt="${product.title}">
+        <div class="product-detail-gallery">
+          ${galleryImages.map((image, index) => `
+            <img src="${image}" alt="${product.title} view ${index + 1}">
+          `).join("")}
+        </div>
       </div>
       <div class="product-detail-copy">
         <span class="tag">${product.badge}</span>
         <h1>${product.title}</h1>
+        <p class="product-detail-audience">${product.gender} / ${product.category}</p>
         <p class="product-detail-price">${formatPrice(product.price)}</p>
         <p class="product-detail-description">${product.description}</p>
         <div class="detail-actions">
@@ -525,10 +671,10 @@ function renderBrowsePage() {
   }
 
   const searchParams = new URLSearchParams(window.location.search);
-  const section = searchParams.get("section") || "women";
+  const section = searchParams.get("section") || "all categories";
   const readable = section.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
   browseHeaderEl.textContent = readable;
-  browseDescriptionEl.textContent = `Explore ${readable} through a dedicated women-focused shopping page.`;
+  browseDescriptionEl.textContent = `Explore ${readable} through a shopping page built for both men's and women's categories.`;
   renderProducts(productGridEl, getVisiblePageProducts());
 }
 
@@ -906,14 +1052,30 @@ if (heroImageEl) {
 
 filtersEl?.addEventListener("click", (event) => {
   const button = event.target.closest("[data-filter]");
-  if (!button) {
+  if (button) {
+    currentFilter = button.dataset.filter;
+    filtersEl.querySelectorAll("[data-filter]").forEach((item) => item.classList.remove("is-active"));
+    button.classList.add("is-active");
+    renderPageProducts();
+  }
+
+  const genderButton = event.target.closest("[data-gender-filter]");
+  if (!genderButton) {
     return;
   }
 
-  currentFilter = button.dataset.filter;
-  filtersEl.querySelectorAll(".filter").forEach((item) => item.classList.remove("is-active"));
-  button.classList.add("is-active");
-  renderPageProducts();
+  setGenderFilter(genderButton.dataset.genderFilter);
+});
+
+genderSwitcherEls.forEach((container) => {
+  container.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-gender-filter]");
+    if (!button) {
+      return;
+    }
+
+    setGenderFilter(button.dataset.genderFilter);
+  });
 });
 
 searchInputs.forEach((input) => {
@@ -1051,6 +1213,7 @@ contactForm?.addEventListener("submit", async (event) => {
   }
 });
 
+initializeGenderFilter();
 renderLatestCollection();
 renderPageProducts();
 renderCart();
