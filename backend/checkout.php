@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'storage.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'database.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -58,13 +58,17 @@ if (!in_array($paymentMethod, $allowedPaymentMethods, true)) {
 $userId = (int) ($user['id'] ?? 0);
 $userEmail = strtolower(trim((string) ($user['email'] ?? '')));
 
-$users = backend_read_json_file(backend_users_storage_path());
 $matchedUser = null;
-foreach ($users as $storedUser) {
-    if ((int) ($storedUser['id'] ?? 0) === $userId && strtolower((string) ($storedUser['email'] ?? '')) === $userEmail) {
-        $matchedUser = $storedUser;
-        break;
-    }
+
+try {
+    $matchedUser = backend_find_user_by_id_and_email($userId, $userEmail);
+} catch (Throwable $exception) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Server error: ' . $exception->getMessage(),
+    ]);
+    exit;
 }
 
 if ($matchedUser === null) {
@@ -118,12 +122,9 @@ if ($normalizedItems === []) {
     exit;
 }
 
-$orders = backend_read_json_file(backend_orders_storage_path());
-$orderId = count($orders) + 1;
-$orderNumber = 'SG-' . str_pad((string) $orderId, 5, '0', STR_PAD_LEFT);
+$orderNumber = 'SG-' . strtoupper(bin2hex(random_bytes(4)));
 
 $order = [
-    'id' => $orderId,
     'order_number' => $orderNumber,
     'user_id' => $matchedUser['id'],
     'user_email' => $matchedUser['email'],
@@ -139,18 +140,26 @@ $order = [
     'created_at' => gmdate('c'),
 ];
 
-$orders[] = $order;
-backend_write_json_file(backend_orders_storage_path(), $orders);
+try {
+    $savedOrder = backend_create_order($order);
+} catch (Throwable $exception) {
+    http_response_code(500);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Server error: ' . $exception->getMessage(),
+    ]);
+    exit;
+}
 
 echo json_encode([
     'success' => true,
     'message' => 'Order placed successfully.',
     'order' => [
-        'id' => $order['id'],
-        'orderNumber' => $order['order_number'],
-        'customerName' => $order['customer_name'],
-        'paymentMethod' => $order['payment_method'],
-        'paymentStatus' => $order['payment_status'],
-        'total' => $order['total'],
+        'id' => (int) $savedOrder['id'],
+        'orderNumber' => $savedOrder['order_number'],
+        'customerName' => $savedOrder['customer_name'],
+        'paymentMethod' => $savedOrder['payment_method'],
+        'paymentStatus' => $savedOrder['payment_status'],
+        'total' => (float) $savedOrder['total'],
     ],
 ]);

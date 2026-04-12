@@ -13,7 +13,7 @@ It provides a smooth shopping experience with modern UI and backend integration.
 * 💳 Payment Page UI
 * 📩 Contact Form
 * 🔗 PHP Backend Integration
-* 🗄️ PostgreSQL Database
+* 🗄️ PostgreSQL Database for users, orders, and contact messages
 
 ---
 
@@ -75,14 +75,18 @@ C:\xampp\htdocs\
 
 * Open pgAdmin
 * Create database: `myproject_db`
-* Create required tables
+* Run `database/schema.sql` to create the required tables
 
 ### 5️⃣ Update DB Connection
 
-Edit `backend/db.php`:
+Create `backend/.env` from `backend/.env.example`:
 
-```php
-$conn = pg_connect("host=localhost port=5432 dbname=myproject_db user=postgres password=YOUR_PASSWORD");
+```env
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_NAME=myproject_db
+DB_USER=postgres
+DB_PASSWORD=YOUR_PASSWORD
 ```
 
 ### 6️⃣ Run Project

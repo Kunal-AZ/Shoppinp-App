@@ -45,65 +45,147 @@ function backend_database_connection(): ?PDO
     return $pdo;
 }
 
-function backend_storage_path(): string
+function backend_require_database_connection(): PDO
 {
-    $config = backend_config();
-    return $config['storage_path'];
-}
-
-function backend_store_message_locally(array $message): void
-{
-    $storagePath = backend_storage_path();
-    $storageDir = dirname($storagePath);
-
-    if (!is_dir($storageDir) && !mkdir($storageDir, 0777, true) && !is_dir($storageDir)) {
-        throw new RuntimeException('Unable to create local storage directory.');
+    $connection = backend_database_connection();
+    if ($connection instanceof PDO) {
+        return $connection;
     }
 
-    $existingMessages = [];
-    if (is_file($storagePath)) {
-        $decoded = json_decode((string) file_get_contents($storagePath), true);
-        if (is_array($decoded)) {
-            $existingMessages = $decoded;
-        }
-    }
-
-    $existingMessages[] = [
-        'id' => count($existingMessages) + 1,
-        'name' => $message['name'],
-        'email' => $message['email'],
-        'phone' => $message['phone'],
-        'message' => $message['message'],
-        'created_at' => gmdate('c'),
-    ];
-
-    $encoded = json_encode($existingMessages, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-    if ($encoded === false) {
-        throw new RuntimeException('Unable to encode contact message payload.');
-    }
-
-    if (file_put_contents($storagePath, $encoded . PHP_EOL, LOCK_EX) === false) {
-        throw new RuntimeException('Unable to write contact message to local storage.');
-    }
+    throw new RuntimeException('PostgreSQL connection is unavailable. Enable the pdo_pgsql extension and verify backend/.env database settings.');
 }
 
 function backend_store_message(array $message): void
 {
-    $connection = backend_database_connection();
-    if ($connection instanceof PDO) {
-        $statement = $connection->prepare(
-            'INSERT INTO contact_messages (name, email, phone, message)
-             VALUES (:name, :email, :phone, :message)'
-        );
+    $statement = backend_require_database_connection()->prepare(
+        'INSERT INTO contact_messages (name, email, phone, message)
+         VALUES (:name, :email, :phone, :message)'
+    );
 
-        $statement->execute([
-            ':name' => $message['name'],
-            ':email' => $message['email'],
-            ':phone' => $message['phone'],
-            ':message' => $message['message'],
-        ]);
-        return;
+    $statement->execute([
+        ':name' => $message['name'],
+        ':email' => $message['email'],
+        ':phone' => $message['phone'],
+        ':message' => $message['message'],
+    ]);
+}
+
+function backend_find_user_by_email(string $email): ?array
+{
+    $statement = backend_require_database_connection()->prepare(
+        'SELECT id, name, email, password_hash, created_at
+         FROM users
+         WHERE email = :email
+         LIMIT 1'
+    );
+    $statement->execute([':email' => $email]);
+
+    $user = $statement->fetch();
+    return is_array($user) ? $user : null;
+}
+
+function backend_create_user(string $name, string $email, string $password): array
+{
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    if ($passwordHash === false) {
+        throw new RuntimeException('Unable to secure the account password.');
     }
 
-    backend_store_message_locally($message);
+    $statement = backend_require_database_connection()->prepare(
+        'INSERT INTO users (name, email, password_hash)
+         VALUES (:name, :email, :password_hash)
+         RETURNING id, name, email, created_at'
+    );
+    $statement->execute([
+        ':name' => $name,
+        ':email' => $email,
+        ':password_hash' => $passwordHash,
+    ]);
+
+    $user = $statement->fetch();
+    if (!is_array($user)) {
+        throw new RuntimeException('Unable to create the user account.');
+    }
+
+    return $user;
+}
+
+function backend_find_user_by_id_and_email(int $userId, string $email): ?array
+{
+    $statement = backend_require_database_connection()->prepare(
+        'SELECT id, name, email, password_hash, created_at
+         FROM users
+         WHERE id = :id AND email = :email
+         LIMIT 1'
+    );
+    $statement->execute([
+        ':id' => $userId,
+        ':email' => $email,
+    ]);
+
+    $user = $statement->fetch();
+    return is_array($user) ? $user : null;
+}
+
+function backend_create_order(array $order): array
+{
+    $connection = backend_require_database_connection();
+    $statement = $connection->prepare(
+        'INSERT INTO orders (
+            order_number,
+            user_id,
+            user_email,
+            customer_name,
+            customer_phone,
+            payment_method,
+            payment_status,
+            order_status,
+            subtotal,
+            shipping,
+            total,
+            items
+        ) VALUES (
+            :order_number,
+            :user_id,
+            :user_email,
+            :customer_name,
+            :customer_phone,
+            :payment_method,
+            :payment_status,
+            :order_status,
+            :subtotal,
+            :shipping,
+            :total,
+            :items::jsonb
+        )
+        RETURNING id, order_number, user_id, user_email, customer_name, customer_phone, payment_method, payment_status, order_status, subtotal, shipping, total, created_at'
+    );
+
+    $itemsJson = json_encode($order['items'], JSON_UNESCAPED_SLASHES);
+    if ($itemsJson === false) {
+        throw new RuntimeException('Unable to encode order items.');
+    }
+
+    $statement->execute([
+        ':order_number' => $order['order_number'],
+        ':user_id' => $order['user_id'],
+        ':user_email' => $order['user_email'],
+        ':customer_name' => $order['customer_name'],
+        ':customer_phone' => $order['customer_phone'],
+        ':payment_method' => $order['payment_method'],
+        ':payment_status' => $order['payment_status'],
+        ':order_status' => $order['order_status'],
+        ':subtotal' => $order['subtotal'],
+        ':shipping' => $order['shipping'],
+        ':total' => $order['total'],
+        ':items' => $itemsJson,
+    ]);
+
+    $savedOrder = $statement->fetch();
+    if (!is_array($savedOrder)) {
+        throw new RuntimeException('Unable to save the order.');
+    }
+
+    $savedOrder['items'] = $order['items'];
+    return $savedOrder;
 }

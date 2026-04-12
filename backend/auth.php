@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'storage.php';
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'database.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -53,8 +53,6 @@ if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || $password ===
     exit;
 }
 
-$users = backend_read_json_file(backend_users_storage_path());
-
 if ($action === 'register') {
     if ($name === '') {
         http_response_code(422);
@@ -65,8 +63,9 @@ if ($action === 'register') {
         exit;
     }
 
-    foreach ($users as $user) {
-        if (($user['email'] ?? '') === $email) {
+    try {
+        $existingUser = backend_find_user_by_email($email);
+        if ($existingUser !== null) {
             http_response_code(409);
             echo json_encode([
                 'success' => false,
@@ -74,48 +73,48 @@ if ($action === 'register') {
             ]);
             exit;
         }
+
+        $newUser = backend_create_user($name, $email, $password);
+
+        echo json_encode([
+            'success' => true,
+            'message' => 'Account created successfully.',
+            'user' => [
+                'id' => (int) $newUser['id'],
+                'name' => $newUser['name'],
+                'email' => $newUser['email'],
+            ],
+        ]);
+        exit;
+    } catch (Throwable $exception) {
+        http_response_code(500);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Server error: ' . $exception->getMessage(),
+        ]);
+        exit;
     }
-
-    $newUser = [
-        'id' => count($users) + 1,
-        'name' => $name,
-        'email' => $email,
-        'password_hash' => password_hash($password, PASSWORD_DEFAULT),
-        'created_at' => gmdate('c'),
-    ];
-
-    $users[] = $newUser;
-    backend_write_json_file(backend_users_storage_path(), $users);
-
-    echo json_encode([
-        'success' => true,
-        'message' => 'Account created successfully.',
-        'user' => [
-            'id' => $newUser['id'],
-            'name' => $newUser['name'],
-            'email' => $newUser['email'],
-        ],
-    ]);
-    exit;
 }
 
-foreach ($users as $user) {
-    if (($user['email'] ?? '') !== $email) {
-        continue;
+try {
+    $user = backend_find_user_by_email($email);
+    if ($user !== null && password_verify($password, (string) ($user['password_hash'] ?? ''))) {
+        echo json_encode([
+            'success' => true,
+            'message' => 'Login successful.',
+            'user' => [
+                'id' => (int) $user['id'],
+                'name' => $user['name'],
+                'email' => $user['email'],
+            ],
+        ]);
+        exit;
     }
-
-    if (!password_verify($password, (string) ($user['password_hash'] ?? ''))) {
-        break;
-    }
-
+} catch (Throwable $exception) {
+    http_response_code(500);
     echo json_encode([
-        'success' => true,
-        'message' => 'Login successful.',
-        'user' => [
-            'id' => $user['id'],
-            'name' => $user['name'],
-            'email' => $user['email'],
-        ],
+        'success' => false,
+        'message' => 'Server error: ' . $exception->getMessage(),
     ]);
     exit;
 }

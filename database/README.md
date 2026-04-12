@@ -1,21 +1,14 @@
-# Contact storage setup
+# PostgreSQL storage setup
 
-The project now works in two storage modes:
+This project stores contact messages, registered users, and orders in PostgreSQL.
 
-1. If PHP has the `pdo_pgsql` driver available, messages are inserted into the PostgreSQL `contact_messages` table defined in `schema.sql`.
-2. If PostgreSQL support is unavailable, contact messages are saved automatically to `database/contact_messages.json`, registered users to `database/users.json`, and orders to `database/orders.json`.
-
-Optional environment variables:
+Required environment variables:
 
 - `DB_HOST`
 - `DB_PORT`
 - `DB_NAME`
 - `DB_USER`
 - `DB_PASSWORD`
-- `MESSAGE_STORAGE_PATH`
-- `USERS_STORAGE_PATH`
-- `ORDERS_STORAGE_PATH`
-
 Quick local run without Apache:
 
 ```bash
@@ -31,5 +24,5 @@ http://127.0.0.1:8000/frontend/index.html
 PostgreSQL example:
 
 ```bash
-psql -U postgres -d sitara_grace -f database/schema.sql
+psql -U postgres -d myproject_db -f database/schema.sql
 ```
